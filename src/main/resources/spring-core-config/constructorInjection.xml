@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean name="address" class="org.example.constructorInjection.Address" p:houseNo="70" p:street="Mesa Verde" p:city="Mesuro"/>
+    <!-- Constructor Injection -->
+    <bean name="studentInjectAsValue" class="org.example.constructorInjection.Student" >
+        <!-- Inject as value -->
+        <constructor-arg>
+            <value>123</value>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="address"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- Inject as c schema -->
+    <bean name="studentInjectAsCSchema" class="org.example.constructorInjection.Student" c:id="234" c:address-ref="address"/>
+
+
+    <!-- To avoid ambiguity is type resolution, use type field -->
+    <!-- use index to specify order of injection -->
+    <bean class="org.example.constructorInjection.Ambiguity" name="ambiguity-int">
+        <constructor-arg value="10" type="int" index="0"/>
+        <constructor-arg value="20" type="int" index="1"/>
+    </bean>
+
+    <bean class="org.example.constructorInjection.Ambiguity" name="ambiguity-double">
+        <constructor-arg value="10" type="double"/>
+        <constructor-arg value="20" type="double"/>
+    </bean>
+
+    <bean class="org.example.constructorInjection.Ambiguity" name="ambiguity-string">
+        <constructor-arg value="10" type="String"/>
+        <constructor-arg value="20" type="String"/>
+    </bean>
+
+</beans>

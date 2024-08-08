@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean name="address" class="org.example.autowiring.dependencyInjection.Address" p:houseNo="89" p:city="Kol" p:street="Mira Road"/>
+
+    <!-- Setter Injections -->
+
+    <!-- Autowiring by type, has to contain only one dependant bean of the type -->
+    <bean name="person" class="org.example.autowiring.dependencyInjection.Person" autowire="byType">
+        <property name="id" value="1234"/>
+    </bean>
+
+    <!-- Autowiring by name, can contain more than one dependant bean of the type, has to have different names -->
+    <bean name="person1" class="org.example.autowiring.dependencyInjection.Person" autowire="byName">
+        <property name="id" value="1234"/>
+    </bean>
+
+
+    <!-- Constructor Injections -->
+    <bean name="person3" class="org.example.autowiring.dependencyInjection.Person" autowire="constructor">
+        <constructor-arg value="123"/>
+        <constructor-arg ref="address"/>
+    </bean>
+
+</beans>

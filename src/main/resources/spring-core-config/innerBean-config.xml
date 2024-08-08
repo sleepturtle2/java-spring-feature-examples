@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:a="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!-- Singleton scope -->
+    <bean name="employee" a:id="123" class="org.example.innerBeans_And_Scopes.Staff">
+        <property name="address">
+            <!-- Name for inner bean is optional -->
+            <bean class="org.example.innerBeans_And_Scopes.Address">
+                <property name="houseNo" value="700"/>
+                <property name="city" value="Kolkata"/>
+                <property name="street" value="NSC Bose Road"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Prototype scope -->
+    <bean name="employee-prototype" a:id="123" class="org.example.innerBeans_And_Scopes.Staff" scope="prototype">
+        <property name="address">
+            <bean class="org.example.innerBeans_And_Scopes.Address">
+                <property name="houseNo" value="700"/>
+                <property name="city" value="Kolkata"/>
+                <property name="street" value="NSC Bose Road"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>
