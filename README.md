@@ -1,1 +1,1 @@
-An example project to demo the major features of Java Spring 
+An example project to demo the core features of Java Spring 
