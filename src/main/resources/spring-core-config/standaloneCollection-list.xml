@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:list list-class="java.util.LinkedList" id="productNames">
+        <value>Bottles</value>
+        <value>Glass</value>
+        <value>Peanuts</value>
+    </util:list>
+
+    <util:map map-class="java.util.HashMap" id="productPrices">
+        <entry key="Bottles" value="20"/>
+        <entry key="Glass" value="9"/>
+        <entry key="Peanuts" value="40"/>
+    </util:map>
+
+    <bean name="productlist" class="org.example.standaloneCollections.ProductsList">
+        <property name="productNames">
+            <ref bean="productNames"/>
+        </property>
+        <property name="productPrices">
+            <ref bean="productPrices"/>
+        </property>
+    </bean>
+
+
+</beans>
